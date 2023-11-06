@@ -1,10 +1,11 @@
 <template>
-  <div class="p-10 h-screen bg-blue-600 overflow-auto">
-    <div class="grid p-10 justify-center">
-      <img class="h-full w-80" src="@/assets/img/tastylogo.svg" alt="">
+  <div class="h-screen overflow-auto bg-blue-600 p-10">
+    <div class="grid justify-center p-10">
+      <a href="https://tastysites.pl" target="_blank">
+        <img class="h-full w-80" src="@/assets/img/tastylogo.svg" alt="" />
+      </a>
     </div>
-    <TrelloBoard/>
+    <TrelloBoard />
   </div>
 </template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
