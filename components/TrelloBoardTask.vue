@@ -7,6 +7,29 @@
       </span></div>
   </div>
 </template>
+<style>
+
+
+.sortable-chosen {
+}
+
+.sortable-drag .task {
+  transform: rotate(6deg);
+}
+
+.sortable-ghost .task {
+  position: relative;
+}
+
+.sortable-ghost .task::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(128, 128, 128, 0.88);
+  border-radius: 1rem;
+}
+</style>
 <script lang="ts" setup>
 import type {Task} from '@/types';
 import DragHandle from "~/components/DragHandle.vue";
