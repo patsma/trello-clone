@@ -19,7 +19,7 @@
 
           <draggable
               v-model="column.tasks"
-              :group="{ name: 'tasks', pull: 'clone'}"
+              :group="{ name: 'tasks', pull: alt ? 'clone' : true}"
               :animation="200"
               handle=".drag-handle"
               item-key="id"
@@ -44,7 +44,6 @@ import type {Column, Task} from "~/types";
 import draggable from "vuedraggable";
 import {nanoid} from "nanoid";
 import DragHandle from "~/components/DragHandle.vue";
-
 const columns = ref<Column[]>([
   {
     title: "Backlog",
@@ -88,4 +87,5 @@ const columns = ref<Column[]>([
     tasks: [],
   },
 ]);
+const alt = useKeyModifier("Alt")
 </script>
