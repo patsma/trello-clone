@@ -33,8 +33,8 @@
             </template>
           </draggable>
 
-          <footer class="m-4 p-2">
-            <button>+ Add Task</button>
+          <footer class=" p-2">
+            <NewTask @add="column.tasks.push($event)"/>
           </footer>
         </div>
       </template>
@@ -46,6 +46,7 @@ import type {Column, Task} from "~/types";
 import draggable from "vuedraggable";
 import {nanoid} from "nanoid";
 import DragHandle from "~/components/DragHandle.vue";
+
 const columns = ref<Column[]>([
   {
     title: "Backlog",
