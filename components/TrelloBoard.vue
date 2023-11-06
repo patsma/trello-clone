@@ -1,21 +1,36 @@
 <template>
   <div>
     <draggable
-      v-model="columns"
-      group="columns"
-      item-key="id"
-      class="flex items-start gap-8 overflow-x-auto p-4"
+        v-model="columns"
+        group="columns"
+        :animation="200"
+        handle=".drag-handle"
+        item-key="id"
+        class="flex items-start gap-8 overflow-x-auto p-4"
     >
       <template #item="{ element: column }: { element: Column }">
-        <div class="column rounded bg-gray-200 p-4 task min-w-[250px]">
-          <div class="p-4 font-bold task__header">
-            {{ column.title }}
+        <div class="rounded bg-gray-200 p-4 column task min-w-[250px]">
+          <div
+              class="grid grid-flow-col items-center justify-start gap-2 p-4 font-bold task__header align-center"
+          >
+            <DragHandle/>
+            <div class="grid pt-1">{{ column.title }}</div>
           </div>
-          <TrelloBoardTask
-            v-for="task in column.tasks"
-            :key="task.id"
-            :task="task"
-          />
+
+          <draggable
+              v-model="column.tasks"
+              group="tasks"
+              :animation="200"
+              handle=".drag-handle"
+              item-key="id"
+          >
+            <template #item="{element:task}:{element:Task}">
+              <TrelloBoardTask
+                  :task="task"
+              />
+            </template>
+          </draggable>
+
           <footer class="m-4 p-2">
             <button>+ Add Task</button>
           </footer>
@@ -24,11 +39,11 @@
     </draggable>
   </div>
 </template>
-
 <script lang="ts" setup>
-import type { Column } from "~/types";
+import type {Column, Task} from "~/types";
 import draggable from "vuedraggable";
-import { nanoid } from "nanoid";
+import {nanoid} from "nanoid";
+import DragHandle from "~/components/DragHandle.vue";
 
 const columns = ref<Column[]>([
   {
