@@ -19,7 +19,7 @@
 
           <draggable
               v-model="column.tasks"
-              group="tasks"
+              :group="{ name: 'tasks', pull: 'clone'}"
               :animation="200"
               handle=".drag-handle"
               item-key="id"
