@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 rounded bg-white p-4 shadow-sm task max-w-[250px]" :title="task.createdAt.toLocaleDateString()"
+  <div class="m-4 rounded bg-white p-4 shadow-sm task max-w-[250px]" :title="new Date(task.createdAt).toLocaleDateString()"
        @focus="focused = true"
        @blur="focused = false"
        tabindex="0"

@@ -57,7 +57,7 @@ import draggable from "vuedraggable";
 import {nanoid} from "nanoid";
 import DragHandle from "~/components/DragHandle.vue";
 
-const columns = ref<Column[]>([
+const columns = useLocalStorage<Column[]>("trelloBoard",[
   {
     title: "Backlog",
     id: nanoid(),
