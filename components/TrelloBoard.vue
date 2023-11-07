@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-start gap-4 overflow-x-auto">
+  <div class="flex items-start gap-4 pb-24 overflow-x-auto">
     <draggable
         v-model="columns"
         group="columns"
@@ -9,7 +9,7 @@
         class="flex items-start gap-8 p-4"
     >
       <template #item="{ element: column }: { element: Column }">
-        <div class="rounded bg-gray-200 p-4 column task min-w-[250px]">
+        <div class="rounded bg-[#FFFFFF38] p-4 column task min-w-[250px]">
           <div
               class="grid grid-flow-col items-center justify-start gap-2 p-4 font-bold task__header align-center"
           >
@@ -51,53 +51,118 @@
     </button>
   </div>
 </template>
+<style>
+.column {
+  background: rgba(255, 255, 255, 0.22);
+}
+</style>
 <script lang="ts" setup>
 import type {Column, Task} from "~/types";
 import draggable from "vuedraggable";
 import {nanoid} from "nanoid";
 import DragHandle from "~/components/DragHandle.vue";
 
-const columns = useLocalStorage<Column[]>("trelloBoard",[
+const columns = useLocalStorage<Column[]>("trelloBoard", [
   {
-    title: "Backlog",
+    title: "Bug Bounties",
     id: nanoid(),
     tasks: [
       {
-        title: "Task 1",
+        title: "Why did the div cross the road? To get to the other viewport.",
         createdAt: new Date(),
         id: nanoid(),
       },
       {
-        title: "Task 2",
+        title: "Fix the coffee machine (it's not coding errors, it's caffeine deficiency!)",
         createdAt: new Date(),
         id: nanoid(),
       },
       {
-        title: "Task 3",
+        title: "Investigate Schrödinger's bug - it only appears when not looking at the console.",
         createdAt: new Date(),
         id: nanoid(),
       },
     ],
   },
   {
-    title: "Selected for Dev",
+    title: "To Debug",
     id: nanoid(),
-    tasks: [],
+    tasks: [
+      {
+        title: "Find the missing semicolon adventure.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+      {
+        title: "Play hide and seek with uncaught exceptions.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+    ],
   },
   {
-    title: "Fix header",
+    title: "Refactoring Realm",
     id: nanoid(),
-    tasks: [],
+    tasks: [
+      {
+        title: "Rename variables from a1, a2... to something human-readable.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+      {
+        title: "Remove code commented out since the 'Before Times'.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+    ],
   },
   {
     title: "In Progress",
     id: nanoid(),
-    tasks: [],
+    tasks: [
+      {
+        title: "Argue about tabs vs spaces - The Eternal Battle.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+      {
+        title: "Trying to center a div (Day 3).",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+    ],
+  },
+  {
+    title: "Feature Factory",
+    id: nanoid(),
+    tasks: [
+      {
+        title: "Implement 'Dark Mode' because... well, we all love it!",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+      {
+        title: "Add an easter egg that only activates when the Konami Code is entered.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+    ],
   },
   {
     title: "Complete",
     id: nanoid(),
-    tasks: [],
+    tasks: [
+      {
+        title: "Successfully googled how to exit Vim.",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+      {
+        title: "Converted coffee into code - it's alive!",
+        createdAt: new Date(),
+        id: nanoid(),
+      },
+    ],
   },
 ]);
 const alt = useKeyModifier("Alt")
