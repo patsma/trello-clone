@@ -39,7 +39,7 @@
   </div>
 </template>
 <style>
-html{
+html,body{
   overflow-x: hidden;
 }
 /* This styles the scrollbar track */
