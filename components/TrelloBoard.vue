@@ -28,6 +28,7 @@
               <div class="task">
                 <TrelloBoardTask
                     :task="task"
+                    @delete="column.tasks = column.tasks.filter(t => t.id !== task.id)"
                 />
               </div>
             </template>

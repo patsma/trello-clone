@@ -1,10 +1,15 @@
 <template>
-  <div class="task bg-white p-4 m-4 rounded shadow-sm max-w-[250px]" :title="task.createdAt.toLocaleDateString()">
+  <div class="m-4 rounded bg-white p-4 shadow-sm task max-w-[250px]" :title="task.createdAt.toLocaleDateString()"
+       @focus="focused = true"
+       @blur="focused = false"
+       tabindex="0"
+  >
     <div class="grid grid-flow-col justify-start gap-1">
       <DragHandle/>
       <span class="pt-[2px]">
         {{ task.title }}
-      </span></div>
+      </span>
+    </div>
   </div>
 </template>
 <style>
@@ -29,12 +34,27 @@
   background: rgba(128, 128, 128, 0.88);
   border-radius: 1rem;
 }
+.task:focus,
+.task:focus-visible{
+  outline: lightgray auto 1px;
+}
 </style>
 <script lang="ts" setup>
-import type {Task} from '@/types';
+import type {Task, ID} from '@/types';
 import DragHandle from "~/components/DragHandle.vue";
 
-defineProps<{
+const props = defineProps<{
   task: Task;
 }>();
+
+const emit = defineEmits<{
+  (e: "delete", payload: ID): void
+}>();
+
+const focused = ref(false);
+onKeyStroke("Backspace", (e) => {
+  if (focused.value) {
+    emit("delete", props.task.id)
+  }
+});
 </script>
